@@ -112,7 +112,7 @@ if (!CPFeatureIsCompatible(CPHTMLCanvasFeature))
     Creates a new graphics state, which describes all the current values for drawing.
     @return a graphics state
 */
-function CGGStateCreate()
+CGGStateCreate = function()
 {
     return { alpha:1.0, strokeStyle:"#000", fillStyle:"#ccc", lineWidth:1.0, lineJoin:kCGLineJoinMiter, lineCap:kCGLineCapButt, miterLimit:10.0, globalAlpha:1.0,
         blendMode:kCGBlendModeNormal,
@@ -124,7 +124,7 @@ function CGGStateCreate()
     @param aGState the graphics state to copy
     @return a copy of the given graphics state
 */
-function CGGStateCreateCopy(aGState)
+CGGStateCreateCopy = function(aGState)
 {
     return { alpha:aGState.alpha, strokeStyle:aGState.strokeStyle, fillStyle:aGState.fillStyle, lineWidth:aGState.lineWidth,
         lineJoin:aGState.lineJoin, lineCap:aGState.lineCap, miterLimit:aGState.miterLimit, globalAlpha:aGState.globalAlpha,
@@ -136,7 +136,7 @@ function CGGStateCreateCopy(aGState)
     Returns a new graphics context.
     @return CGContext a new graphics context which can be drawn into
 */
-function CGBitmapGraphicsContextCreate()
+CGBitmapGraphicsContextCreate = function()
 {
     return { DOMElement:document.createElement("div"), path:NULL, gState:CGGStateCreate(), gStateStack:[] };
 }
@@ -146,7 +146,7 @@ function CGBitmapGraphicsContextCreate()
     @param aContext the CGContext to edit
     @return void
 */
-function CGContextSaveGState(aContext)
+CGContextSaveGState = function(aContext)
 {
     aContext.gStateStack.push(CGGStateCreateCopy(aContext.gState));
 }
@@ -156,37 +156,37 @@ function CGContextSaveGState(aContext)
     @param aContext the CGContext to edit
     @return void
 */
-function CGContextRestoreGState(aContext)
+CGContextRestoreGState = function(aContext)
 {
     aContext.gState = aContext.gStateStack.pop();
 }
 
-function CGContextSetLineCap(aContext, aLineCap)
+CGContextSetLineCap = function(aContext, aLineCap)
 {
     aContext.gState.lineCap = aLineCap;
 }
 
-function CGContextSetLineJoin(aContext, aLineJoin)
+CGContextSetLineJoin = function(aContext, aLineJoin)
 {
     aContext.gState.lineJoin = aLineJoin;
 }
 
-function CGContextSetLineWidth(aContext, aLineWidth)
+CGContextSetLineWidth = function(aContext, aLineWidth)
 {
     aContext.gState.lineWidth = aLineWidth;
 }
 
-function CGContextSetMiterLimit(aContext, aMiterLimit)
+CGContextSetMiterLimit = function(aContext, aMiterLimit)
 {
     aContext.gState.miterLimit = aMiterLimit;
 }
 
-function CGContextSetBlendMode(aContext, aBlendMode)
+CGContextSetBlendMode = function(aContext, aBlendMode)
 {
     aContext.gState.blendMode = aBlendMode;
 }
 
-function CGContextAddArc(aContext, x, y, radius, startAngle, endAngle, clockwise)
+CGContextAddArc = function(aContext, x, y, radius, startAngle, endAngle, clockwise)
 {
     CGPathAddArc(aContext.path, aContext.gState.CTM, x, y, radius, startAngle, endAngle, clockwise);
 }
@@ -201,7 +201,7 @@ function CGContextAddArc(aContext, x, y, radius, startAngle, endAngle, clockwise
     @param radius the radius of the arc to be drawn
     @return void
 */
-function CGContextAddArcToPoint(aContext, x1, y1, x2, y2, radius)
+CGContextAddArcToPoint = function(aContext, x1, y1, x2, y2, radius)
 {
     CGPathAddArcToPoint(aContext.path, aContext.gState.CTM, x1, y1, x2, y2, radius);
 }
@@ -217,7 +217,7 @@ function CGContextAddArcToPoint(aContext, x1, y1, x2, y2, radius)
     @param y the y coordinate of the end of the curve
     @return void
 */
-function CGContextAddCurveToPoint(aContext, cp1x, cp1y, cp2x, cp2y, x, y)
+CGContextAddCurveToPoint = function(aContext, cp1x, cp1y, cp2x, cp2y, x, y)
 {
     CGPathAddCurveToPoint(aContext.path, aContext.gState.CTM, cp1x, cp1y, cp2x, cp2y, x, y);
 }
@@ -229,7 +229,7 @@ function CGContextAddCurveToPoint(aContext, cp1x, cp1y, cp2x, cp2y, x, y)
     @param count an upper bound on the number of points to use
     @return void
 */
-function CGContextAddLines(aContext, points, count)
+CGContextAddLines = function(aContext, points, count)
 {
     CGPathAddLines(aContext.path, aContext.gState.CTM, points, count);
 }
@@ -241,7 +241,7 @@ function CGContextAddLines(aContext, points, count)
     @param y the y coordinate of the end point of the line
     @return void
 */
-function CGContextAddLineToPoint(aContext, x, y)
+CGContextAddLineToPoint = function(aContext, x, y)
 {
     CGPathAddLineToPoint(aContext.path, aContext.gState.CTM, x, y);
 }
@@ -252,7 +252,7 @@ function CGContextAddLineToPoint(aContext, x, y)
     @param aPath the path to be added
     @return void
 */
-function CGContextAddPath(aContext, aPath)
+CGContextAddPath = function(aContext, aPath)
 {
     if (!aContext || CGPathIsEmpty(aPath))
         return;
@@ -272,7 +272,7 @@ function CGContextAddPath(aContext, aPath)
     @param y the y coordinate for the end point of the curve
     @return void
 */
-function CGContextAddQuadCurveToPoint(aContext, cpx, cpy, x, y)
+CGContextAddQuadCurveToPoint = function(aContext, cpx, cpy, x, y)
 {
     CGPathAddQuadCurveToPoint(aContext.path, aContext.gState.CTM, cpx, cpy, x, y);
 }
@@ -283,7 +283,7 @@ function CGContextAddQuadCurveToPoint(aContext, cpx, cpy, x, y)
     @param aRect the dimensions of the rectangle to add
     @return void
 */
-function CGContextAddRect(aContext, aRect)
+CGContextAddRect = function(aContext, aRect)
 {
     CGPathAddRect(aContext.path, aContext.gState.CTM, aRect);
 }
@@ -295,7 +295,7 @@ function CGContextAddRect(aContext, aRect)
     @param the upper bound of elements to be added
     @return void
 */
-function CGContextAddRects(aContext, rects, count)
+CGContextAddRects = function(aContext, rects, count)
 {
     CGPathAddRects(aContext.path, aContext.gState.CTM, rects, count);
 }
@@ -305,7 +305,7 @@ function CGContextAddRects(aContext, rects, count)
     @param aContext the CGContext to create a new path in
     @return void
 */
-function CGContextBeginPath(aContext)
+CGContextBeginPath = function(aContext)
 {
     // This clears any previous path.
     aContext.path = CGPathCreateMutable();
@@ -316,7 +316,7 @@ function CGContextBeginPath(aContext)
     @param aContext the CGContext to close a path in
     @return void
 */
-function CGContextClosePath(aContext)
+CGContextClosePath = function(aContext)
 {
     CGPathCloseSubpath(aContext.path);
 }
@@ -328,7 +328,7 @@ function CGContextClosePath(aContext)
     @param y the y location to move the context to
     @return void
 */
-function CGContextMoveToPoint(aContext, x, y)
+CGContextMoveToPoint = function(aContext, x, y)
 {
     if (!aContext.path)
         aContext.path = CGPathCreateMutable();
@@ -342,7 +342,7 @@ function CGContextMoveToPoint(aContext, x, y)
     @param aRect the dimensions of the rectangle to fill
     @return void
 */
-function CGContextFillRect(aContext, aRect)
+CGContextFillRect = function(aContext, aRect)
 {
     CGContextFillRects(aContext, [aRect], 1);
 }
@@ -354,7 +354,7 @@ function CGContextFillRect(aContext, aRect)
     @param count the maximum number of rects from the given array to fill
     @return void
 */
-function CGContextFillRects(aContext, rects, count)
+CGContextFillRects = function(aContext, rects, count)
 {
     if (arguments[2] === undefined)
         var count = rects.length;
@@ -372,7 +372,7 @@ function CGContextFillRects(aContext, rects, count)
     @param aRect a CGRect indicating the dimensions of the rectangle to be drawn
     @return void
 */
-function CGContextStrokeRect(aContext, aRect)
+CGContextStrokeRect = function(aContext, aRect)
 {
     CGContextBeginPath(aContext);
     CGContextAddRect(aContext, aRect);
@@ -388,7 +388,7 @@ function CGContextStrokeRect(aContext, aRect)
     @param aWidth the width with which to stroke the rect
     @return void
 */
-function CGContextStrokeRectWithWidth(aContext, aRect, aWidth)
+CGContextStrokeRectWithWidth = function(aContext, aRect, aWidth)
 {
     CGContextSaveGState(aContext);
 
@@ -404,7 +404,7 @@ function CGContextStrokeRectWithWidth(aContext, aRect, aWidth)
     @param aTransform the CGAffineTransform to apply to the given context
     @return void
 */
-function CGContextConcatCTM(aContext, aTransform)
+CGContextConcatCTM = function(aContext, aTransform)
 {
     var CTM = aContext.gState.CTM;
 
@@ -416,7 +416,7 @@ function CGContextConcatCTM(aContext, aTransform)
     @param aContext the CGContext for which we are asking for the transform
     @return CGAffineTransform the current transformation matrix of the given context
 */
-function CGContextGetCTM(aContext)
+CGContextGetCTM = function(aContext)
 {
     return aContext.gState.CTM;
 }
@@ -428,7 +428,7 @@ function CGContextGetCTM(aContext)
     @return void
 */
 
-function CGContextRotateCTM(aContext, anAngle)
+CGContextRotateCTM = function(aContext, anAngle)
 {
     var gState = aContext.gState;
 
@@ -442,7 +442,7 @@ function CGContextRotateCTM(aContext, anAngle)
     @param sy the amount to scale in the y direction
     @return void
 */
-function CGContextScaleCTM(aContext, sx, sy)
+CGContextScaleCTM = function(aContext, sx, sy)
 {
     var gState = aContext.gState;
 
@@ -456,7 +456,7 @@ function CGContextScaleCTM(aContext, sx, sy)
     @param ty the amount to move in the y direction
     @return void
 */
-function CGContextTranslateCTM(aContext, tx, ty)
+CGContextTranslateCTM = function(aContext, tx, ty)
 {
     var gState = aContext.gState;
 
@@ -471,7 +471,7 @@ function CGContextTranslateCTM(aContext, tx, ty)
     @return void
 */
 
-function CGContextSetShadow(aContext, aSize, aBlur)
+CGContextSetShadow = function(aContext, aSize, aBlur)
 {
     var gState = aContext.gState;
 
@@ -488,7 +488,7 @@ function CGContextSetShadow(aContext, aSize, aBlur)
     @param aColor a CPColor object indicating the color of the shadow
     @return void
 */
-function CGContextSetShadowWithColor(aContext, aSize, aBlur, aColor)
+CGContextSetShadowWithColor = function(aContext, aSize, aBlur, aColor)
 {
     var gState = aContext.gState;
 
@@ -503,7 +503,7 @@ function CGContextSetShadowWithColor(aContext, aSize, aBlur, aColor)
     @param anAlpha the new alpha value. 1.0 is completely opaque, 0.0 is completely transparent.
     @return void
 */
-function CGContextSetAlpha(aContext, anAlpha)
+CGContextSetAlpha = function(aContext, anAlpha)
 {
     aContext.gState.alpha = MAX(MIN(anAlpha, 1.0), 0.0);
 }

@@ -27,7 +27,7 @@ var VML_TRUTH_TABLE     = [ "f", "t"],
 
 var _CGBitmapGraphicsContextCreate = CGBitmapGraphicsContextCreate;
 
-function CGBitmapGraphicsContextCreate()
+CGBitmapGraphicsContextCreate = function()
 {
     // The first time around, we have to set up our environment to support vml.
     document.namespaces.add("cg_vml_", "urn:schemas-microsoft-com:vml");
@@ -38,7 +38,7 @@ function CGBitmapGraphicsContextCreate()
     return _CGBitmapGraphicsContextCreate();
 }
 
-function CGContextSetFillColor(aContext, aColor)
+CGContextSetFillColor = function(aContext, aColor)
 {
     if ([aColor patternImage])
         // Prefix a marker character to the string so we know it's a pattern image filename
@@ -48,7 +48,7 @@ function CGContextSetFillColor(aContext, aColor)
 }
 
 // FIXME: aRect is ignored.
-function CGContextClearRect(aContext, aRect)
+CGContextClearRect = function(aContext, aRect)
 {
     if (aContext.buffer != nil)
         aContext.buffer = "";
@@ -65,7 +65,7 @@ var W = 10.0,
 
 #define COORD(aCoordinate) (aCoordinate === 0.0 ? 0 : ROUND(Z * (aCoordinate) - Z_2))
 
-function CGContextDrawImage(aContext, aRect, anImage)
+CGContextDrawImage = function(aContext, aRect, anImage)
 {
     var string = "";
 
@@ -116,7 +116,7 @@ function CGContextDrawImage(aContext, aRect, anImage)
         aContext.DOMElement.insertAdjacentHTML("BeforeEnd", string);
 }
 
-function CGContextDrawPath(aContext, aMode)
+CGContextDrawPath = function(aContext, aMode)
 {
     if (!aContext || CGPathIsEmpty(aContext.path))
         return;
@@ -278,12 +278,12 @@ function CGContextDrawPath(aContext, aMode)
         aContext.DOMElement.insertAdjacentHTML("BeforeEnd", vml.join(""));
 }
 
-function to_string(aColor)
+to_string = function(aColor)
 {
     return "rgb(" + ROUND(aColor.components[0] * 255) + ", " + ROUND(aColor.components[1] * 255) + ", " + ROUND(255 * aColor.components[2]) + ")";
 }
 
-function CGContextDrawLinearGradient(aContext, aGradient, aStartPoint, anEndPoint, options)
+CGContextDrawLinearGradient = function(aContext, aGradient, aStartPoint, anEndPoint, options)
 {
     if (!aContext || !aGradient)
         return;

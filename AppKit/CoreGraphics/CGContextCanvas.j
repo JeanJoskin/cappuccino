@@ -43,64 +43,64 @@ var CANVAS_LINECAP_TABLE    = [ "butt", "round", "square" ],
 #define _CGContextFillRectCanvas(aContext, aRect) aContext.fillRect(_CGRectGetMinX(aRect), _CGRectGetMinY(aRect), _CGRectGetWidth(aRect), _CGRectGetHeight(aRect))
 #define _CGContextClipCanvas(aContext) aContext.clip()
 
-function CGContextSaveGState(aContext)
+CGContextSaveGState = function(aContext)
 {
     aContext.save();
 }
 
-function CGContextRestoreGState(aContext)
+CGContextRestoreGState = function(aContext)
 {
     aContext.restore();
 }
 
-function CGContextSetLineCap(aContext, aLineCap)
+CGContextSetLineCap = function(aContext, aLineCap)
 {
     aContext.lineCap = CANVAS_LINECAP_TABLE[aLineCap];
 }
 
-function CGContextSetLineJoin(aContext, aLineJoin)
+CGContextSetLineJoin = function(aContext, aLineJoin)
 {
     aContext.lineJoin = CANVAS_LINEJOIN_TABLE[aLineJoin];
 }
 
-function CGContextSetLineWidth(aContext, aLineWidth)
+CGContextSetLineWidth = function(aContext, aLineWidth)
 {
     aContext.lineWidth = aLineWidth;
 }
 
-function CGContextSetMiterLimit(aContext, aMiterLimit)
+CGContextSetMiterLimit = function(aContext, aMiterLimit)
 {
     aContext.miterLimit = aMiterLimit;
 }
 
-function CGContextSetBlendMode(aContext, aBlendMode)
+CGContextSetBlendMode = function(aContext, aBlendMode)
 {
     aContext.globalCompositeOperation = CANVAS_COMPOSITE_TABLE[aBlendMode];
 }
 
-function CGContextAddArc(aContext, x, y, radius, startAngle, endAngle, clockwise)
+CGContextAddArc = function(aContext, x, y, radius, startAngle, endAngle, clockwise)
 {
     // Despite the documentation saying otherwise, the last parameter is anti-clockwise not clockwise.
     // http://developer.mozilla.org/en/docs/Canvas_tutorial:Drawing_shapes#Arcs
     _CGContextAddArcCanvas(aContext, x, y, radius, startAngle, endAngle, !clockwise);
 }
 
-function CGContextAddArcToPoint(aContext, x1, y1, x2, y2, radius)
+CGContextAddArcToPoint = function(aContext, x1, y1, x2, y2, radius)
 {
     _CGContextAddArcToPointCanvas(aContext, x1, y1, x2, y2, radius);
 }
 
-function CGContextAddCurveToPoint(aContext, cp1x, cp1y, cp2x, cp2y, x, y)
+CGContextAddCurveToPoint = function(aContext, cp1x, cp1y, cp2x, cp2y, x, y)
 {
     _CGContextAddCurveToPointCanvas(aContext, cp1x, cp1y, cp2x, cp2y, x, y);
 }
 
-function CGContextAddLineToPoint(aContext, x, y)
+CGContextAddLineToPoint = function(aContext, x, y)
 {
     _CGContextAddLineToPointCanvas(aContext, x, y);
 }
 
-function CGContextAddPath(aContext, aPath)
+CGContextAddPath = function(aContext, aPath)
 {
     if (!aContext || CGPathIsEmpty(aPath))
         return;
@@ -135,12 +135,12 @@ function CGContextAddPath(aContext, aPath)
     }
 }
 
-function CGContextAddRect(aContext, aRect)
+CGContextAddRect = function(aContext, aRect)
 {
     _CGContextAddRectCanvas(aContext, aRect);
 }
 
-function CGContextAddRects(aContext, rects, count)
+CGContextAddRects = function(aContext, rects, count)
 {
     var i = 0;
 
@@ -154,27 +154,27 @@ function CGContextAddRects(aContext, rects, count)
     }
 }
 
-function CGContextBeginPath(aContext)
+CGContextBeginPath = function(aContext)
 {
     _CGContextBeginPathCanvas(aContext);
 }
 
-function CGContextClosePath(aContext)
+CGContextClosePath = function(aContext)
 {
     _CGContextClosePathCanvas(aContext);
 }
 
-function CGContextMoveToPoint(aContext, x, y)
+CGContextMoveToPoint = function(aContext, x, y)
 {
     _CGContextMoveToPointCanvas(aContext, x, y);
 }
 
-function CGContextClearRect(aContext, aRect)
+CGContextClearRect = function(aContext, aRect)
 {
     aContext.clearRect(_CGRectGetMinX(aRect), _CGRectGetMinY(aRect), _CGRectGetWidth(aRect), _CGRectGetHeight(aRect));
 }
 
-function CGContextDrawPath(aContext, aMode)
+CGContextDrawPath = function(aContext, aMode)
 {
     if (aMode == kCGPathFill || aMode == kCGPathFillStroke)
         aContext.fill();
@@ -185,12 +185,12 @@ function CGContextDrawPath(aContext, aMode)
         aContext.stroke();
 }
 
-function CGContextFillRect(aContext, aRect)
+CGContextFillRect = function(aContext, aRect)
 {
     _CGContextFillRectCanvas(aContext, aRect);
 }
 
-function CGContextFillRects(aContext, rects, count)
+CGContextFillRects = function(aContext, rects, count)
 {
     var i = 0;
 
@@ -204,17 +204,17 @@ function CGContextFillRects(aContext, rects, count)
     }
 }
 
-function CGContextStrokeRect(aContext, aRect)
+CGContextStrokeRect = function(aContext, aRect)
 {
     aContext.strokeRect(_CGRectGetMinX(aRect), _CGRectGetMinY(aRect), _CGRectGetWidth(aRect), _CGRectGetHeight(aRect));
 }
 
-function CGContextClip(aContext)
+CGContextClip = function(aContext)
 {
     _CGContextClipCanvas(aContext);
 }
 
-function CGContextClipToRect(aContext, aRect)
+CGContextClipToRect = function(aContext, aRect)
 {
     _CGContextBeginPathCanvas(aContext);
     _CGContextAddRectCanvas(aContext, aRect);
@@ -223,7 +223,7 @@ function CGContextClipToRect(aContext, aRect)
     _CGContextClipCanvas(aContext);
 }
 
-function CGContextClipToRects(aContext, rects, count)
+CGContextClipToRects = function(aContext, rects, count)
 {
     if (count === NULL)
         var count = rects.length;
@@ -233,12 +233,12 @@ function CGContextClipToRects(aContext, rects, count)
     _CGContextClipCanvas(aContext);
 }
 
-function CGContextSetAlpha(aContext, anAlpha)
+CGContextSetAlpha = function(aContext, anAlpha)
 {
     aContext.globalAlpha = anAlpha;
 }
 
-function CGContextSetFillColor(aContext, aColor)
+CGContextSetFillColor = function(aContext, aColor)
 {
     if ([aColor patternImage])
     {
@@ -261,19 +261,19 @@ function CGContextSetFillColor(aContext, aColor)
         aContext.fillStyle = [aColor cssString];
 }
 
-function CGContextSetStrokeColor(aContext, aColor)
+CGContextSetStrokeColor = function(aContext, aColor)
 {
     aContext.strokeStyle = [aColor cssString];
 }
 
-function CGContextSetShadow(aContext, aSize, aBlur)
+CGContextSetShadow = function(aContext, aSize, aBlur)
 {
     aContext.shadowOffsetX = aSize.width;
     aContext.shadowOffsetY = aSize.height;
     aContext.shadowBlur = aBlur;
 }
 
-function CGContextSetShadowWithColor(aContext, aSize, aBlur, aColor)
+CGContextSetShadowWithColor = function(aContext, aSize, aBlur, aColor)
 {
     aContext.shadowOffsetX = aSize.width;
     aContext.shadowOffsetY = aSize.height;
@@ -281,17 +281,17 @@ function CGContextSetShadowWithColor(aContext, aSize, aBlur, aColor)
     aContext.shadowColor = [aColor cssString];
 }
 
-function CGContextRotateCTM(aContext, anAngle)
+CGContextRotateCTM = function(aContext, anAngle)
 {
     aContext.rotate(anAngle);
 }
 
-function CGContextScaleCTM(aContext, sx, sy)
+CGContextScaleCTM = function(aContext, sx, sy)
 {
     aContext.scale(sx, sy);
 }
 
-function CGContextTranslateCTM(aContext, tx, ty)
+CGContextTranslateCTM = function(aContext, tx, ty)
 {
     aContext.translate(tx, ty);
 }
@@ -346,7 +346,7 @@ function CGContextTranslateCTM(aContext, tx, ty)
             sy = (abs_cos * d / cos + abs_sin * -c / sin) / (abs_cos + abs_sin);\
         }\
 
-function eigen(anAffineTransform)
+eigen = function(anAffineTransform)
 {
     alert("IMPLEMENT ME!");
 }
@@ -432,17 +432,17 @@ CGContextConcatCTM = function(aContext, anAffineTransform)
 
 }
 
-function CGContextDrawImage(aContext, aRect, anImage)
+CGContextDrawImage = function(aContext, aRect, anImage)
 {
     aContext.drawImage(anImage._image, _CGRectGetMinX(aRect), _CGRectGetMinY(aRect), _CGRectGetWidth(aRect), _CGRectGetHeight(aRect));
 }
 
-function to_string(aColor)
+to_string = function(aColor)
 {
     return "rgba(" + ROUND(aColor.components[0] * 255) + ", " + ROUND(aColor.components[1] * 255) + ", " + ROUND(255 * aColor.components[2]) + ", " + aColor.components[3] + ")";
 }
 
-function CGContextDrawLinearGradient(aContext, aGradient, aStartPoint, anEndPoint, options)
+CGContextDrawLinearGradient = function(aContext, aGradient, aStartPoint, anEndPoint, options)
 {
     var colors = aGradient.colors,
         count = colors.length,
@@ -456,7 +456,7 @@ function CGContextDrawLinearGradient(aContext, aGradient, aStartPoint, anEndPoin
     aContext.fill();
 }
 
-function CGBitmapGraphicsContextCreate()
+CGBitmapGraphicsContextCreate = function()
 {
     var DOMElement = document.createElement("canvas"),
         context = DOMElement.getContext("2d");

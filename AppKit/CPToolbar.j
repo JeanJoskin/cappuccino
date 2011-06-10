@@ -121,7 +121,7 @@ var CPToolbarsByIdentifier              = nil,
 
     if (!toolbarsSharingIdentifier)
     {
-        toolbarsSharingIdentifier = []
+        toolbarsSharingIdentifier = [];
         [CPToolbarsByIdentifier setObject:toolbarsSharingIdentifier forKey:identifier];
     }
 

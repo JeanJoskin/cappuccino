@@ -1349,7 +1349,7 @@ var ModifierKeyCodes = [
 
         var insertionIndex = 0;
         if (middle !== undefined)
-            insertionIndex = _windowLevels[middle] > aLevel ? middle : middle + 1
+            insertionIndex = _windowLevels[middle] > aLevel ? middle : middle + 1;
 
         [_windowLevels insertObject:aLevel atIndex:insertionIndex];
         layer._DOMElement.style.zIndex = aLevel;

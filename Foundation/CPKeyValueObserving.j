@@ -309,13 +309,13 @@ var kvoNewAndOld        = CPKeyValueObservingOptionNew | CPKeyValueObservingOpti
     {
         var setKey_method_imp = setKey_method.method_imp;
 
-        class_addMethod(KVOClass, setKey_selector, function(self, _cmd, anObject)
+        class_addMethod(KVOClass, setKey_selector, function(_self, _cmd, anObject)
         {
-            [self willChangeValueForKey:aKey];
+            [_self willChangeValueForKey:aKey];
 
-            setKey_method_imp(self, _cmd, anObject);
+            setKey_method_imp(_self, _cmd, anObject);
 
-            [self didChangeValueForKey:aKey];
+            [_self didChangeValueForKey:aKey];
         }, "");
     }
 
@@ -327,13 +327,13 @@ var kvoNewAndOld        = CPKeyValueObservingOptionNew | CPKeyValueObservingOpti
     {
         var _setKey_method_imp = _setKey_method.method_imp;
 
-        class_addMethod(KVOClass, _setKey_selector, function(self, _cmd, anObject)
+        class_addMethod(KVOClass, _setKey_selector, function(_self, _cmd, anObject)
         {
-            [self willChangeValueForKey:aKey];
+            [_self willChangeValueForKey:aKey];
 
-            _setKey_method_imp(self, _cmd, anObject);
+            _setKey_method_imp(_self, _cmd, anObject);
 
-            [self didChangeValueForKey:aKey];
+            [_self didChangeValueForKey:aKey];
         }, "");
     }
 
@@ -360,15 +360,15 @@ var kvoNewAndOld        = CPKeyValueObservingOptionNew | CPKeyValueObservingOpti
         {
             var insertObject_inKeyAtIndex_method_imp = insertObject_inKeyAtIndex_method.method_imp;
 
-            class_addMethod(KVOClass, insertObject_inKeyAtIndex_selector, function(self, _cmd, anObject, anIndex)
+            class_addMethod(KVOClass, insertObject_inKeyAtIndex_selector, function(_self, _cmd, anObject, anIndex)
             {
-                [self willChange:CPKeyValueChangeInsertion
+                [_self willChange:CPKeyValueChangeInsertion
                  valuesAtIndexes:[CPIndexSet indexSetWithIndex:anIndex]
                           forKey:aKey];
 
-                insertObject_inKeyAtIndex_method_imp(self, _cmd, anObject, anIndex);
+                insertObject_inKeyAtIndex_method_imp(_self, _cmd, anObject, anIndex);
 
-                [self didChange:CPKeyValueChangeInsertion
+                [_self didChange:CPKeyValueChangeInsertion
                 valuesAtIndexes:[CPIndexSet indexSetWithIndex:anIndex]
                          forKey:aKey];
             }, "");
@@ -378,15 +378,15 @@ var kvoNewAndOld        = CPKeyValueObservingOptionNew | CPKeyValueObservingOpti
         {
             var insertKey_atIndexes_method_imp = insertKey_atIndexes_method.method_imp;
 
-            class_addMethod(KVOClass, insertKey_atIndexes_selector, function(self, _cmd, objects, indexes)
+            class_addMethod(KVOClass, insertKey_atIndexes_selector, function(_self, _cmd, objects, indexes)
             {
-                [self willChange:CPKeyValueChangeInsertion
+                [_self willChange:CPKeyValueChangeInsertion
                  valuesAtIndexes:[indexes copy]
                           forKey:aKey];
 
-                insertKey_atIndexes_method_imp(self, _cmd, objects, indexes);
+                insertKey_atIndexes_method_imp(_self, _cmd, objects, indexes);
 
-                [self didChange:CPKeyValueChangeInsertion
+                [_self didChange:CPKeyValueChangeInsertion
                 valuesAtIndexes:[indexes copy]
                          forKey:aKey];
             }, "");
@@ -396,15 +396,15 @@ var kvoNewAndOld        = CPKeyValueObservingOptionNew | CPKeyValueObservingOpti
         {
             var removeObjectFromKeyAtIndex_method_imp = removeObjectFromKeyAtIndex_method.method_imp;
 
-            class_addMethod(KVOClass, removeObjectFromKeyAtIndex_selector, function(self, _cmd, anIndex)
+            class_addMethod(KVOClass, removeObjectFromKeyAtIndex_selector, function(_self, _cmd, anIndex)
             {
-                [self willChange:CPKeyValueChangeRemoval
+                [_self willChange:CPKeyValueChangeRemoval
                  valuesAtIndexes:[CPIndexSet indexSetWithIndex:anIndex]
                           forKey:aKey];
 
-                removeObjectFromKeyAtIndex_method_imp(self, _cmd, anIndex);
+                removeObjectFromKeyAtIndex_method_imp(_self, _cmd, anIndex);
 
-                [self didChange:CPKeyValueChangeRemoval
+                [_self didChange:CPKeyValueChangeRemoval
                 valuesAtIndexes:[CPIndexSet indexSetWithIndex:anIndex]
                          forKey:aKey];
             }, "");
@@ -414,15 +414,15 @@ var kvoNewAndOld        = CPKeyValueObservingOptionNew | CPKeyValueObservingOpti
         {
             var removeKeyAtIndexes_method_imp = removeKeyAtIndexes_method.method_imp;
 
-            class_addMethod(KVOClass, removeKeyAtIndexes_selector, function(self, _cmd, indexes)
+            class_addMethod(KVOClass, removeKeyAtIndexes_selector, function(_self, _cmd, indexes)
             {
-                [self willChange:CPKeyValueChangeRemoval
+                [_self willChange:CPKeyValueChangeRemoval
                  valuesAtIndexes:[indexes copy]
                           forKey:aKey];
 
-                removeKeyAtIndexes_method_imp(self, _cmd, indexes);
+                removeKeyAtIndexes_method_imp(_self, _cmd, indexes);
 
-                [self didChange:CPKeyValueChangeRemoval
+                [_self didChange:CPKeyValueChangeRemoval
                 valuesAtIndexes:[indexes copy]
                          forKey:aKey];
             }, "");
@@ -440,15 +440,15 @@ var kvoNewAndOld        = CPKeyValueObservingOptionNew | CPKeyValueObservingOpti
                     replaceObjectInKeyAtIndex_withObject_method.method_imp;
 
             class_addMethod(KVOClass, replaceObjectInKeyAtIndex_withObject_selector,
-            function(self, _cmd, anIndex, anObject)
+            function(_self, _cmd, anIndex, anObject)
             {
-                [self willChange:CPKeyValueChangeReplacement
+                [_self willChange:CPKeyValueChangeReplacement
                  valuesAtIndexes:[CPIndexSet indexSetWithIndex:anIndex]
                           forKey:aKey];
 
-                replaceObjectInKeyAtIndex_withObject_method_imp(self, _cmd, anIndex, anObject);
+                replaceObjectInKeyAtIndex_withObject_method_imp(_self, _cmd, anIndex, anObject);
 
-                [self didChange:CPKeyValueChangeReplacement
+                [_self didChange:CPKeyValueChangeReplacement
                 valuesAtIndexes:[CPIndexSet indexSetWithIndex:anIndex]
                          forKey:aKey];
             }, "");
@@ -463,15 +463,15 @@ var kvoNewAndOld        = CPKeyValueObservingOptionNew | CPKeyValueObservingOpti
         {
             var replaceKeyAtIndexes_withKey_method_imp = replaceKeyAtIndexes_withKey_method.method_imp;
 
-            class_addMethod(KVOClass, replaceKeyAtIndexes_withKey_selector, function(self, _cmd, indexes, objects)
+            class_addMethod(KVOClass, replaceKeyAtIndexes_withKey_selector, function(_self, _cmd, indexes, objects)
             {
-                [self willChange:CPKeyValueChangeReplacement
+                [_self willChange:CPKeyValueChangeReplacement
                  valuesAtIndexes:[indexes copy]
                           forKey:aKey];
 
-                replaceObjectInKeyAtIndex_withObject_method_imp(self, _cmd, indexes, objects);
+                replaceObjectInKeyAtIndex_withObject_method_imp(_self, _cmd, indexes, objects);
 
-                [self didChange:CPKeyValueChangeReplacement
+                [_self didChange:CPKeyValueChangeReplacement
                 valuesAtIndexes:[indexes copy]
                          forKey:aKey];
             }, "");
@@ -497,15 +497,15 @@ var kvoNewAndOld        = CPKeyValueObservingOptionNew | CPKeyValueObservingOpti
         {
             var addKeyObject_method_imp = addKeyObject_method.method_imp;
 
-            class_addMethod(KVOClass, addKeyObject_selector, function(self, _cmd, anObject)
+            class_addMethod(KVOClass, addKeyObject_selector, function(_self, _cmd, anObject)
             {
-                [self willChangeValueForKey:aKey
+                [_self willChangeValueForKey:aKey
                             withSetMutation:CPKeyValueUnionSetMutation
                                usingObjects:[CPSet setWithObject:anObject]];
 
-                addKeyObject_method_imp(self, _cmd, anObject);
+                addKeyObject_method_imp(_self, _cmd, anObject);
 
-                [self didChangeValueForKey:aKey
+                [_self didChangeValueForKey:aKey
                            withSetMutation:CPKeyValueUnionSetMutation
                               usingObjects:[CPSet setWithObject:anObject]];
             }, "");
@@ -515,15 +515,15 @@ var kvoNewAndOld        = CPKeyValueObservingOptionNew | CPKeyValueObservingOpti
         {
             var addKey_method_imp = addKey_method.method_imp;
 
-            class_addMethod(KVOClass, addKey_selector, function(self, _cmd, objects)
+            class_addMethod(KVOClass, addKey_selector, function(_self, _cmd, objects)
             {
-                [self willChangeValueForKey:aKey
+                [_self willChangeValueForKey:aKey
                             withSetMutation:CPKeyValueUnionSetMutation
                                usingObjects:[objects copy]];
 
-                addKey_method_imp(self, _cmd, objects);
+                addKey_method_imp(_self, _cmd, objects);
 
-                [self didChangeValueForKey:aKey
+                [_self didChangeValueForKey:aKey
                            withSetMutation:CPKeyValueUnionSetMutation
                               usingObjects:[objects copy]];
             }, "");
@@ -533,15 +533,15 @@ var kvoNewAndOld        = CPKeyValueObservingOptionNew | CPKeyValueObservingOpti
         {
             var removeKeyObject_method_imp = removeKeyObject_method.method_imp;
 
-            class_addMethod(KVOClass, removeKeyObject_selector, function(self, _cmd, anObject)
+            class_addMethod(KVOClass, removeKeyObject_selector, function(_self, _cmd, anObject)
             {
-                [self willChangeValueForKey:aKey
+                [_self willChangeValueForKey:aKey
                             withSetMutation:CPKeyValueMinusSetMutation
                                usingObjects:[CPSet setWithObject:anObject]];
 
-                removeKeyObject_method_imp(self, _cmd, anObject);
+                removeKeyObject_method_imp(_self, _cmd, anObject);
 
-                [self didChangeValueForKey:aKey
+                [_self didChangeValueForKey:aKey
                            withSetMutation:CPKeyValueMinusSetMutation
                               usingObjects:[CPSet setWithObject:anObject]];
             }, "");
@@ -551,15 +551,15 @@ var kvoNewAndOld        = CPKeyValueObservingOptionNew | CPKeyValueObservingOpti
         {
             var removeKey_method_imp = removeKey_method.method_imp;
 
-            class_addMethod(KVOClass, removeKey_selector, function(self, _cmd, objects)
+            class_addMethod(KVOClass, removeKey_selector, function(_self, _cmd, objects)
             {
-                [self willChangeValueForKey:aKey
+                [_self willChangeValueForKey:aKey
                             withSetMutation:CPKeyValueMinusSetMutation
                                usingObjects:[objects copy]];
 
-                removeKey_method_imp(self, _cmd, objects);
+                removeKey_method_imp(_self, _cmd, objects);
 
-                [self didChangeValueForKey:aKey
+                [_self didChangeValueForKey:aKey
                            withSetMutation:CPKeyValueMinusSetMutation
                               usingObjects:[objects copy]];
             }, "");
@@ -573,15 +573,15 @@ var kvoNewAndOld        = CPKeyValueObservingOptionNew | CPKeyValueObservingOpti
         {
             var intersectKey_method_imp = intersectKey_method.method_imp;
 
-            class_addMethod(KVOClass, intersectKey_selector, function(self, _cmd, aSet)
+            class_addMethod(KVOClass, intersectKey_selector, function(_self, _cmd, aSet)
             {
-                [self willChangeValueForKey:aKey
+                [_self willChangeValueForKey:aKey
                             withSetMutation:CPKeyValueIntersectSetMutation
                                usingObjects:[aSet copy]];
 
-                intersectKey_method_imp(self, _cmd, aSet);
+                intersectKey_method_imp(_self, _cmd, aSet);
 
-                [self didChangeValueForKey:aKey
+                [_self didChangeValueForKey:aKey
                            withSetMutation:CPKeyValueIntersectSetMutation
                               usingObjects:[aSet copy]];
             }, "");
