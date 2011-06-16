@@ -86,8 +86,8 @@ aDOMElement.style.bottom = ROUND(____p.y) + "px";
 
 #define CPDOMDisplayServerRemoveChild(aParentElement, aChildElement) aParentElement.removeChild(aChildElement)
 
-#define PREPARE_DOM_OPTIMIZATION()
-#define EXECUTE_DOM_INSTRUCTIONS()
+#define PREPARE_DOM_OPTIMIZATION(x)
+#define EXECUTE_DOM_INSTRUCTIONS(x)
 
 #else
 #define CPDOMDisplayServerSetStyleLeftTop(aDOMElement, aTransform, aLeft, aTop) CPDOMDisplayServerSetStyleOrigin(SetStyleLeftTop, aDOMElement, aTransform, aLeft, aTop)
