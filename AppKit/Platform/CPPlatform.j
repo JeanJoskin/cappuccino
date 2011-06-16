@@ -71,7 +71,7 @@
 @end
 
 #if PLATFORM(DOM)
-#include "DOM/CPPlatform.j"
+#include "DOM/CPPlatform_DOM.j"
 #else
 @implementation CPPlatform : CPBasePlatform
 {

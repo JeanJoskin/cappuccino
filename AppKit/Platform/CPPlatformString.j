@@ -39,7 +39,7 @@
 @end
 
 #if PLATFORM(DOM)
-#include "DOM/CPPlatformString.j"
+#include "DOM/CPPlatformString_DOM.j"
 #else
 @implementation CPPlatformString : CPBasePlatformString
 {
